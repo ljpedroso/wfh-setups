@@ -1,10 +1,12 @@
-import Typography from "@material-ui/core/Typography";
-function Copyright() {
+import { Typography } from "@material-ui/core";
+const Copyright = () => {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © WFH Setups"}
+      {"Copyright © WFH Setups "}
       {new Date().getFullYear()}
       {"."}
     </Typography>
   );
-}
+};
+
+export default Copyright;
