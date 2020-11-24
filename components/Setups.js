@@ -1,7 +1,6 @@
 import {
   Container,
   Card,
-  CardMedia,
   Typography,
   CardContent,
   CardActions,
@@ -24,9 +23,7 @@ const useStyles = makeStyles((theme) => ({
   cardMedia: {
     paddingTop: "56.25%", // 16:9
   },
-  cardContent: {
-    flexGrow: 1,
-  },
+  cardContent: {},
 }));
 
 const Setups = ({ list }) => {
@@ -38,10 +35,11 @@ const Setups = ({ list }) => {
           <Grid item key={setup.id} xs={12} sm={6} md={4}>
             <Card className={classes.card}>
               <Image
-                src={setup.imgUrl}
+                src={setup.image_url}
                 layout="responsive"
-                width={300}
-                height={200}
+                width={810}
+                height={608}
+                quality={50}
               />
               <CardContent className={classes.cardContent}>
                 <Typography gutterBottom variant="h5" component="h2">

@@ -1,18 +1,35 @@
-const AWS = require("aws-sdk");
-
-const port = process.env.PORT;
-
-const spacesEndpoint = new AWS.Endpoint("nyc3.digitaloceanspaces.com");
-const s3 = new AWS.S3({
-  endpoint: spacesEndpoint,
-  accessKeyId: process.env.SPACES_KEY,
-  secretAccessKey: process.env.SPACES_SECRET,
-});
+const sqlite3 = require("sqlite3").verbose();
 
 export default (req, res) => {
   switch (req.method) {
     case "GET":
       {
+        const db = new sqlite3.Database(
+          "./mydb.db",
+          sqlite3.OPEN_READWRITE,
+          (err) => {
+            if (err) {
+              console.error("Error conecting");
+            }
+          }
+        );
+
+        db.all(
+          "SELECT id, nickname, image_url, thumbnail_url FROM setups ",
+          [],
+          (err, rows) => {
+            if (err) {
+              res.statusCode = 500;
+              res.send(err.message);
+            } else {
+              res.statusCode = 200;
+              res.json(rows);
+            }
+          }
+        );
+
+        db.close();
+
         const setupList = [
           {
             id: 1,
@@ -38,37 +55,17 @@ export default (req, res) => {
             imgUrl:
               "https://images-projectx.nyc3.digitaloceanspaces.com/the-modern.jpg",
           },
+          {
+            id: 5,
+            nickname: "The Rocker",
+            imgUrl:
+              "https://images-projectx.nyc3.digitaloceanspaces.com/the-rocker.jpeg",
+          },
         ];
-
-        res.statusCode = 200;
-        res.json(setupList);
       }
       break;
     case "POST":
       {
-        const image = req.files.image;
-        var params = {
-          Bucket: "images-projectx",
-          Key: image.name,
-          Body: image.data,
-          ACL: "public-read",
-        };
-
-        s3.putObject(params)
-          .promise()
-          .then((data) => {
-            const newImage = {
-              url: `https://images-projectx.nyc3.digitaloceanspaces.com/${image.name}`,
-              name: image.name,
-            };
-            res.statusCode = 200;
-            res.json({ msg: "OK", image: newImage });
-          })
-          .catch((err) => {
-            console.log(err, err.stack);
-            res.statusCode = 500;
-            res.json({ error: err.stack });
-          });
       }
       break;
 
