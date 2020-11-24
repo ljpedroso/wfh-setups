@@ -29,63 +29,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-const setupList = [
-  {
-    id: 1,
-    nickname: "The Natural",
-    imgUrl:
-      "https://images-projectx.nyc3.digitaloceanspaces.com/the-natural.jpg",
-  },
-  {
-    id: 2,
-    nickname: "The Essential",
-    imgUrl:
-      "https://images-projectx.nyc3.digitaloceanspaces.com/the-essential.jpg",
-  },
-  {
-    id: 3,
-    nickname: "The Soother",
-    imgUrl:
-      "https://images-projectx.nyc3.digitaloceanspaces.com/the-soother.jpg",
-  },
-  {
-    id: 4,
-    nickname: "The Modern",
-    imgUrl:
-      "https://images-projectx.nyc3.digitaloceanspaces.com/the-modern.jpg",
-  },
-];
-
-const Setups = () => {
+const Setups = ({ list }) => {
   const classes = useStyles();
   return (
     <Container className={classes.cardGrid} maxWidth="md">
       <Grid container spacing={4}>
-        {setupList.map((setup) => (
+        {list.map((setup) => (
           <Grid item key={setup.id} xs={12} sm={6} md={4}>
             <Card className={classes.card}>
-              <CardMedia
-                className={classes.cardMedia}
-                image={setup.imgUrl}
-                title={setup.nickname}
+              <Image
+                src={setup.imgUrl}
+                layout="responsive"
+                width={300}
+                height={200}
               />
               <CardContent className={classes.cardContent}>
                 <Typography gutterBottom variant="h5" component="h2">
                   {setup.nickname}
                 </Typography>
-                <Typography>
-                  This is a media card. You can use this section to describe the
-                  content.
-                </Typography>
               </CardContent>
               <CardActions>
                 <Button size="small" color="primary">
                   View
-                </Button>
-                <Button size="small" color="primary">
-                  Edit
                 </Button>
               </CardActions>
             </Card>
