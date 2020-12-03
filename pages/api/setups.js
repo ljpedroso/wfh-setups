@@ -29,39 +29,6 @@ export default (req, res) => {
         );
 
         db.close();
-
-        const setupList = [
-          {
-            id: 1,
-            nickname: "The Natural",
-            imgUrl:
-              "https://images-projectx.nyc3.digitaloceanspaces.com/the-natural.jpg",
-          },
-          {
-            id: 2,
-            nickname: "The Essential",
-            imgUrl:
-              "https://images-projectx.nyc3.digitaloceanspaces.com/the-essential.jpg",
-          },
-          {
-            id: 3,
-            nickname: "The Soother",
-            imgUrl:
-              "https://images-projectx.nyc3.digitaloceanspaces.com/the-soother.jpg",
-          },
-          {
-            id: 4,
-            nickname: "The Modern",
-            imgUrl:
-              "https://images-projectx.nyc3.digitaloceanspaces.com/the-modern.jpg",
-          },
-          {
-            id: 5,
-            nickname: "The Rocker",
-            imgUrl:
-              "https://images-projectx.nyc3.digitaloceanspaces.com/the-rocker.jpeg",
-          },
-        ];
       }
       break;
     case "POST":

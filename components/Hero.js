@@ -1,5 +1,6 @@
 import { Container, Typography, Grid, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import Link from "next/link";
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -31,9 +32,9 @@ const Hero = () => {
         <div className={classes.heroButtons}>
           <Grid container spacing={2} justify="center">
             <Grid item>
-              <Button variant="contained" color="secondary">
-                Share Now
-              </Button>
+              <Link href="/share">
+                <a>Share Now</a>
+              </Link>
             </Grid>
           </Grid>
         </div>

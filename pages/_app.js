@@ -7,7 +7,7 @@ import theme from "../theme";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <div>
       <Head>
         <title>Work From Home Setups</title>
         <meta
@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }) {
         </main>
         <Footer />
       </ThemeProvider>
-    </>
+    </div>
   );
 }
 
